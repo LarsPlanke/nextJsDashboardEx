@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt'; // TODO needs to be bcrypt or 'bcryptjs' ?
+import bcrypt from 'bcryptjs'; // TODO needs to be bcrypt or 'bcryptjs' ?
 import postgres from 'postgres';
 import { invoices, customers, revenue, users } from '../lib/placeholder-data';
 
