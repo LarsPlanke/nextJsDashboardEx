@@ -20,38 +20,48 @@ export default async function RevenueChart() {
   }
 
   return (
-    <div className="w-full md:col-span-4">
-      <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
-        Recent Revenue
-      </h2>
-      <div className="rounded-xl bg-gray-50 p-4">
-        <div className="sm:grid-cols-13 mt-0 grid grid-cols-12 items-end gap-2 rounded-md bg-white p-4 md:gap-4">
-          <div
-            className="mb-6 hidden flex-col justify-between text-sm text-gray-400 sm:flex"
-            style={{ height: `${chartHeight}px` }}
-          >
-            {yAxisLabels.map((label) => (
-              <p key={label}>{label}</p>
+    <div className="w-full">
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h2 className={`${lusitana.className} text-xl font-bold text-slate-900`}>
+              Statistics
+            </h2>
+            <p className="text-sm text-slate-600 mt-1">Revenue overview</p>
+          </div>
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 rounded-lg">
+            <CalendarIcon className="h-4 w-4 text-slate-500" />
+            <span className="text-sm text-slate-600">Last 12 months</span>
+          </div>
+        </div>
+
+        <div className="relative">
+          <div className="sm:grid-cols-13 mt-0 grid grid-cols-12 items-end gap-3 p-4">
+            <div
+              className="mb-6 hidden flex-col justify-between text-xs text-slate-400 sm:flex"
+              style={{ height: `${chartHeight}px` }}
+            >
+              {yAxisLabels.map((label) => (
+                <p key={label}>{label}</p>
+              ))}
+            </div>
+
+            {revenue.map((month, index) => (
+              <div key={month.month} className="flex flex-col items-center gap-2 group">
+                <div
+                  className="w-full rounded-t-lg bg-gradient-to-t from-blue-500 to-blue-400 hover:from-blue-600 hover:to-blue-500 transition-all duration-300 relative overflow-hidden"
+                  style={{
+                    height: `${(chartHeight / topLabel) * month.revenue}px`,
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/20"></div>
+                </div>
+                <p className="text-xs text-slate-500 font-medium -rotate-90 sm:rotate-0">
+                  {month.month}
+                </p>
+              </div>
             ))}
           </div>
-
-          {revenue.map((month) => (
-            <div key={month.month} className="flex flex-col items-center gap-2">
-              <div
-                className="w-full rounded-md bg-blue-300"
-                style={{
-                  height: `${(chartHeight / topLabel) * month.revenue}px`,
-                }}
-              ></div>
-              <p className="-rotate-90 text-sm text-gray-400 sm:rotate-0">
-                {month.month}
-              </p>
-            </div>
-          ))}
-        </div>
-        <div className="flex items-center pb-2 pt-6">
-          <CalendarIcon className="h-5 w-5 text-gray-500" />
-          <h3 className="ml-2 text-sm text-gray-500 ">Last 12 months</h3>
         </div>
       </div>
     </div>
