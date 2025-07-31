@@ -17,7 +17,6 @@ export default function LoginForm() {
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
     undefined,
-
   );
   return (
     <form action={formAction} className="space-y-3">
